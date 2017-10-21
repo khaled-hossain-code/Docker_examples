@@ -1,28 +1,28 @@
-version: '2'
+version: '3'
 
 services:
 
   wordpress:
     image: wordpress
     ports:
-      - 8080:80
+      - '8080:80'
     environment:
       WORDPRESS_DB_HOST: mysql
       WORDPRESS_DB_NAME: wordpress
       WORDPRESS_DB_USER: example
       WORDPRESS_DB_PASSWORD: examplePW
     volumes:
-      - ./wordpress-data:/var/www/html
+      - ./wordpress-data:/var/www/html #it is linking
 
   mysql:
     image: mariadb
-    environment:
+    environment: #environment is a dictionary here
       MYSQL_ROOT_PASSWORD: examplerootPW
       MYSQL_DATABASE: wordpress
       MYSQL_USER: example
       MYSQL_PASSWORD: examplePW
     volumes:
-      - mysql-data:/var/lib/mysql
+      - mysql-data:/var/lib/mysql #it is naming the volume as mysql-data
 
 volumes:
   mysql-data:

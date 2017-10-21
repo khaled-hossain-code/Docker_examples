@@ -13,7 +13,7 @@ services:
       - MYSQL_DATABASE=ghost
     volumes:
       - ./config.js:/var/lib/ghost/config.js
-    depends_on:
+    depends_on: #it means if ghost need to start then these two container has to be started before
       - mysql-primary
       - mysql-secondary
   proxysql:
@@ -42,5 +42,5 @@ services:
       - CLUSTER_JOIN=mysql-primary
       - MYSQL_PROXY_USER=proxyuser
       - MYSQL_PROXY_PASSWORD=s3cret
-    depends_on:
+    depends_on: # to run mysql-secondary we have to run the mysql-primary first
       - mysql-primary
